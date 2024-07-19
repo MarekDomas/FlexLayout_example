@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Ukazka.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid ColumnDefinitions="*,2*">
+
+        <ScrollView Background="MediumPurple">
+            <VerticalStackLayout Spacing="15">
+
+                <Label
+                    Margin="0,20,0,0"
+                    FontSize="22"
+                    HorizontalOptions="Center"
+                    Text="Enter a number of boxes to generate:"
+                    TextColor="Black"
+                    VerticalOptions="Start" />
+                <Entry
+                    x:Name="numEntry"
+                    Margin="0,10,0,0"
+                    FontSize="22"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    TextColor="Black"
+                    VerticalOptions="Start"
+                    WidthRequest="75" />
+
+
+                <StackLayout HorizontalOptions="Center" RadioButtonGroup.GroupName="DirectionBtn">
+                    <RadioButton
+                        CheckedChanged="Orientation_CheckedChanged"
+                        Content="Column"
+                        GroupName="OrientationOptions" />
+                    <RadioButton
+                        CheckedChanged="Orientation_CheckedChanged"
+                        Content="ColumnReverse"
+                        GroupName="OrientationOptions" />
+                    <RadioButton
+                        CheckedChanged="Orientation_CheckedChanged"
+                        Content="Row"
+                        GroupName="OrientationOptions" />
+                    <RadioButton
+                        CheckedChanged="Orientation_CheckedChanged"
+                        Content="RowReverse"
+                        GroupName="OrientationOptions" />
+                </StackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <FlexLayout x:Name="exampleLayout" Grid.Column="1" />
+
+
+    </Grid>
+
+</ContentPage>
