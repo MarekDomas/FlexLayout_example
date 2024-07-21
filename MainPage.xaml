@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Grid ColumnDefinitions="*,2*">
+    <Grid ColumnDefinitions="*,3*">
 
         <ScrollView Background="MediumPurple">
             <VerticalStackLayout Spacing="15">
@@ -28,29 +28,160 @@
                     WidthRequest="75" />
 
 
-                <StackLayout HorizontalOptions="Center" RadioButtonGroup.GroupName="DirectionBtn">
+                <Label
+                    FontSize="22"
+                    HorizontalOptions="Start"
+                    Text="Layout direction: "
+                    TextColor="Black" />
+
+                <StackLayout Padding="25,0,0,0" RadioButtonGroup.GroupName="DirectionBtns">
                     <RadioButton
-                        CheckedChanged="Orientation_CheckedChanged"
+                        CheckedChanged="Direction_CheckedChanged"
                         Content="Column"
                         GroupName="OrientationOptions" />
                     <RadioButton
-                        CheckedChanged="Orientation_CheckedChanged"
+                        CheckedChanged="Direction_CheckedChanged"
                         Content="ColumnReverse"
                         GroupName="OrientationOptions" />
                     <RadioButton
-                        CheckedChanged="Orientation_CheckedChanged"
+                        CheckedChanged="Direction_CheckedChanged"
                         Content="Row"
-                        GroupName="OrientationOptions" />
+                        GroupName="OrientationOptions"
+                        IsChecked="True" />
                     <RadioButton
-                        CheckedChanged="Orientation_CheckedChanged"
+                        CheckedChanged="Direction_CheckedChanged"
                         Content="RowReverse"
                         GroupName="OrientationOptions" />
+                </StackLayout>
+
+                <Label
+                    FontSize="22"
+                    HorizontalOptions="Start"
+                    Text="Layout Wrap mode: "
+                    TextColor="Black" />
+
+                <StackLayout Padding="25,0,0,0" RadioButtonGroup.GroupName="WrapBtns">
+                    <RadioButton
+                        CheckedChanged="WrapButton_OnCheckedChanged"
+                        Content="NoWrap"
+                        GroupName="WrapOptions" />
+                    <RadioButton
+                        CheckedChanged="WrapButton_OnCheckedChanged"
+                        Content="Wrap"
+                        GroupName="WrapOptions" />
+                    <RadioButton
+                        CheckedChanged="WrapButton_OnCheckedChanged"
+                        Content="Reverse"
+                        GroupName="WrapOptions" />
+                </StackLayout>
+
+
+                <Label
+                    FontSize="22"
+                    HorizontalOptions="Start"
+                    Text="JustifyContent: "
+                    TextColor="Black" />
+
+                <StackLayout Padding="25,0,0,0" RadioButtonGroup.GroupName="JustifyBtns">
+                    <RadioButton
+                        CheckedChanged="JustifyContentButton_OnCheckedChanged"
+                        Content="Start"
+                        GroupName="JustifyOptions" />
+                    <RadioButton
+                        CheckedChanged="JustifyContentButton_OnCheckedChanged"
+                        Content="Center"
+                        GroupName="JustifyOptions" />
+                    <RadioButton
+                        CheckedChanged="JustifyContentButton_OnCheckedChanged"
+                        Content="End"
+                        GroupName="JustifyOptions" />
+                    <RadioButton
+                        CheckedChanged="JustifyContentButton_OnCheckedChanged"
+                        Content="SpaceBetween"
+                        GroupName="JustifyOptions" />
+                    <RadioButton
+                        CheckedChanged="JustifyContentButton_OnCheckedChanged"
+                        Content="SpaceAround"
+                        GroupName="JustifyOptions" />
+                    <RadioButton
+                        CheckedChanged="JustifyContentButton_OnCheckedChanged"
+                        Content="SpaceEvenly"
+                        GroupName="JustifyOptions" />
+                </StackLayout>
+
+                <Label
+                    FontSize="22"
+                    HorizontalOptions="Start"
+                    Text="AlignItems: "
+                    TextColor="Black" />
+
+                <StackLayout Padding="25,0,0,0" RadioButtonGroup.GroupName="AlignItemsBtns">
+                    <RadioButton
+                        CheckedChanged="AlignItemsButton_OnCheckedChanged"
+                        Content="Stretch"
+                        GroupName="AlignItemsOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignItemsButton_OnCheckedChanged"
+                        Content="Center"
+                        GroupName="AlignItemsOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignItemsButton_OnCheckedChanged"
+                        Content="Start"
+                        GroupName="AlignItemsOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignItemsButton_OnCheckedChanged"
+                        Content="End"
+                        GroupName="AlignItemsOpts" />
+                </StackLayout>
+
+                <Label
+                    FontSize="22"
+                    HorizontalOptions="Start"
+                    Text="AlignContent: "
+                    TextColor="Black" />
+
+                <StackLayout Padding="25,0,0,0" RadioButtonGroup.GroupName="AlignContentBtns">
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="Stretch"
+                        GroupName="AlignContentOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="Center"
+                        GroupName="AlignContentOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="Start"
+                        GroupName="AlignContentOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="End"
+                        GroupName="AlignContentOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="SpaceBetween"
+                        GroupName="AlignContentOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="SpaceAround"
+                        GroupName="AlignContentOpts" />
+                    <RadioButton
+                        CheckedChanged="AlignContentButton_OnCheckedChanged"
+                        Content="SpaceEvenly"
+                        GroupName="AlignContentOpts" />
                 </StackLayout>
 
             </VerticalStackLayout>
         </ScrollView>
 
-        <FlexLayout x:Name="exampleLayout" Grid.Column="1" />
+        <FlexLayout
+            x:Name="ExampleLayout"
+            Grid.Column="1"
+            AlignContent="SpaceEvenly"
+            AlignItems="End"
+            Direction="RowReverse"
+            JustifyContent="SpaceEvenly"
+            Wrap="Wrap" />
 
 
     </Grid>

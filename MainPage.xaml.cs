@@ -1,20 +1,21 @@
 ﻿using System.Diagnostics;
 using Microsoft.Maui.Layouts;
-
+using Ukazka.Classes;
 
 namespace Ukazka;
 
 public partial class MainPage : ContentPage
 {
-    List<BoxView> boxes = new();
-    Random random = new();
+    readonly List<BoxView> boxes = [];
+    readonly Random random = new();
     public MainPage()
     {
-        //GenerateItems(200);
+        GenerateItems(20);
         InitializeComponent();
+        AddItemsToLayout();
     }
 
-    void GenerateItems(int numberOfItems)
+    private void GenerateItems(int numberOfItems)
     {
         for (int i = 0; i < numberOfItems; i++)
         {
@@ -24,8 +25,16 @@ public partial class MainPage : ContentPage
                 HeightRequest = 100,
                 WidthRequest = 100
             };
-
+            
             boxes.Add(box);
+        }
+    }
+
+    private void AddItemsToLayout()
+    {
+        foreach (var box in boxes)
+        {
+            ExampleLayout.Children.Add(box);
         }
     }
 
@@ -34,33 +43,56 @@ public partial class MainPage : ContentPage
         //GenerateItems(200);
     }
 
-    private void Orientation_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    private void Direction_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         var radioButton = sender as RadioButton;
-        if (radioButton.IsChecked)
-        {
-            Debug.Print($"{radioButton.Content}");
-            if (exampleLayout is not null) 
-            {
-                exampleLayout.Direction = GetFlexDirection( radioButton.Content.ToString());
-            }
-        }
+
+        if(!Functions.validateRadioBtn(radioButton,ExampleLayout)) return;
+        
+        ExampleLayout.Direction = Functions.GetFlexDirection( radioButton.Content.ToString());
+        Debug.Print($"{ExampleLayout.Direction}");
     }
 
-    private FlexDirection GetFlexDirection(string direction)
+    
+
+    private void WrapButton_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        switch (direction)
-        {
-            case "Column":
-                return FlexDirection.Column;
-            case "ColumnReverse":
-                return FlexDirection.ColumnReverse;
-            case "Row":
-                return FlexDirection.Row;
-            case "RowReverse":
-                return FlexDirection.RowReverse;
-            default:
-                return FlexDirection.Column;
-        }
+        var radioButton = sender as RadioButton;
+
+        if (!Functions.validateRadioBtn(radioButton,ExampleLayout)) return;
+
+        ExampleLayout.Wrap = Functions.GetFlexWrap(radioButton.Content.ToString());
+        Debug.Print($"{ExampleLayout.Wrap}");
+    }
+
+    private void JustifyContentButton_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        var radioButton = sender as RadioButton;
+
+        if (!Functions.validateRadioBtn(radioButton, ExampleLayout)) return;
+
+        ExampleLayout.JustifyContent = Functions.geFlexJustify(radioButton.Content.ToString());
+        Debug.Print($"{ExampleLayout.JustifyContent}");
+    }
+
+
+    private void AlignItemsButton_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        var radioButton = sender as RadioButton;
+
+        if (!Functions.validateRadioBtn(radioButton, ExampleLayout)) return;
+
+        ExampleLayout.AlignItems = Functions.GetFlexAlignItems(radioButton.Content.ToString());
+        Debug.Print($"{ExampleLayout.AlignItems}");
+    }
+
+    private void AlignContentButton_OnCheckedChanged(object? sender, CheckedChangedEventArgs e)
+    {
+        var radioButton = sender as RadioButton;
+
+        if (!Functions.validateRadioBtn(radioButton, ExampleLayout)) return;
+
+        ExampleLayout.AlignContent = Functions.GetFlexAlignContent(radioButton.Content.ToString());
+        Debug.Print($"{ExampleLayout.AlignContent}");
     }
 }
