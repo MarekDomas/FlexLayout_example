@@ -16,16 +16,23 @@
                     Text="Enter a number of boxes to generate:"
                     TextColor="Black"
                     VerticalOptions="Start" />
-                <Entry
-                    x:Name="numEntry"
-                    Margin="0,10,0,0"
-                    FontSize="22"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Keyboard="Numeric"
-                    TextColor="Black"
-                    VerticalOptions="Start"
-                    WidthRequest="75" />
+
+                <HorizontalStackLayout>
+                    <Entry
+                        x:Name="numEntry"
+                        Margin="0,10,0,0"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        TextColor="Black"
+                        VerticalOptions="Start"
+                        WidthRequest="75" />
+                    <Button
+                        x:Name="SetNumBtn"
+                        Clicked="SetNumBtn_OnClicked"
+                        Text="Generate" />
+                </HorizontalStackLayout>
 
 
                 <Label
@@ -174,14 +181,15 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <FlexLayout
-            x:Name="ExampleLayout"
-            Grid.Column="1"
-            AlignContent="SpaceEvenly"
-            AlignItems="End"
-            Direction="RowReverse"
-            JustifyContent="SpaceEvenly"
-            Wrap="Wrap" />
+        <ScrollView Grid.Column="1">
+            <FlexLayout
+                x:Name="ExampleLayout"
+                AlignContent="SpaceEvenly"
+                AlignItems="End"
+                Direction="RowReverse"
+                JustifyContent="SpaceEvenly"
+                Wrap="Wrap" />
+        </ScrollView>
 
 
     </Grid>

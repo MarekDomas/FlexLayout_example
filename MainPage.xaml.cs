@@ -15,8 +15,9 @@ public partial class MainPage : ContentPage
         AddItemsToLayout();
     }
 
-    private void GenerateItems(int numberOfItems)
+    private async Task GenerateItems(int numberOfItems)
     {
+        boxes.Clear();
         for (int i = 0; i < numberOfItems; i++)
         {
             BoxView box = new()
@@ -32,6 +33,7 @@ public partial class MainPage : ContentPage
 
     private void AddItemsToLayout()
     {
+        ExampleLayout.Children.Clear();
         foreach (var box in boxes)
         {
             ExampleLayout.Children.Add(box);
@@ -94,5 +96,13 @@ public partial class MainPage : ContentPage
 
         ExampleLayout.AlignContent = Functions.GetFlexAlignContent(radioButton.Content.ToString());
         Debug.Print($"{ExampleLayout.AlignContent}");
+    }
+
+    private async void SetNumBtn_OnClicked(object sender, EventArgs e)
+    {
+        if(!int.TryParse(numEntry.Text,out var numberOfItems)) return;
+
+        await GenerateItems(numberOfItems);
+        AddItemsToLayout();
     }
 }
