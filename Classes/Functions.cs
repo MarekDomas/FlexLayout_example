@@ -101,8 +101,6 @@ public class Functions
     {
         if (!radioButton.IsChecked) return false;
 
-        if(layout is null) return false;
-
-        return true;
+        return layout is not null; //Tato funkce se volá automaticky na začátku programu kdy je layout null a aplikace padá
     }
 }

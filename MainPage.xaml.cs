@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.Maui.Layouts;
-using Ukazka.Classes;
+﻿using Ukazka.Classes;
 
 namespace Ukazka;
 
@@ -20,6 +18,7 @@ public partial class MainPage : ContentPage
         boxes.Clear();
         for (int i = 0; i < numberOfItems; i++)
         {
+            //Generování BoxView přes kód
             BoxView box = new()
             {
                 Color = Color.FromRgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256)),
@@ -36,23 +35,18 @@ public partial class MainPage : ContentPage
         ExampleLayout.Children.Clear();
         foreach (var box in boxes)
         {
+            //Přidání BoxView do FlexLayoutu
             ExampleLayout.Children.Add(box);
         }
     }
 
-    private void RefreshButton_Clicked(object sender, EventArgs e)
-    {
-        //GenerateItems(200);
-    }
-
     private void Direction_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        var radioButton = sender as RadioButton;
+        var radioButton = sender as RadioButton; //Získání RadioButtonu
 
         if(!Functions.validateRadioBtn(radioButton,ExampleLayout)) return;
         
-        ExampleLayout.Direction = Functions.GetFlexDirection( radioButton.Content.ToString());
-        Debug.Print($"{ExampleLayout.Direction}");
+        ExampleLayout.Direction = Functions.GetFlexDirection( radioButton.Content.ToString()); //Měnění vlastností FlexLayoutu
     }
 
     
@@ -64,7 +58,6 @@ public partial class MainPage : ContentPage
         if (!Functions.validateRadioBtn(radioButton,ExampleLayout)) return;
 
         ExampleLayout.Wrap = Functions.GetFlexWrap(radioButton.Content.ToString());
-        Debug.Print($"{ExampleLayout.Wrap}");
     }
 
     private void JustifyContentButton_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -74,7 +67,6 @@ public partial class MainPage : ContentPage
         if (!Functions.validateRadioBtn(radioButton, ExampleLayout)) return;
 
         ExampleLayout.JustifyContent = Functions.geFlexJustify(radioButton.Content.ToString());
-        Debug.Print($"{ExampleLayout.JustifyContent}");
     }
 
 
@@ -85,7 +77,6 @@ public partial class MainPage : ContentPage
         if (!Functions.validateRadioBtn(radioButton, ExampleLayout)) return;
 
         ExampleLayout.AlignItems = Functions.GetFlexAlignItems(radioButton.Content.ToString());
-        Debug.Print($"{ExampleLayout.AlignItems}");
     }
 
     private void AlignContentButton_OnCheckedChanged(object? sender, CheckedChangedEventArgs e)
@@ -95,7 +86,6 @@ public partial class MainPage : ContentPage
         if (!Functions.validateRadioBtn(radioButton, ExampleLayout)) return;
 
         ExampleLayout.AlignContent = Functions.GetFlexAlignContent(radioButton.Content.ToString());
-        Debug.Print($"{ExampleLayout.AlignContent}");
     }
 
     private async void SetNumBtn_OnClicked(object sender, EventArgs e)
